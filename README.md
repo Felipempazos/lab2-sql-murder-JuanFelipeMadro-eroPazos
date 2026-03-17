@@ -13,3 +13,23 @@ Con eso aparecieron varias tablas. Algunas ya dan pistas solo por el nombre. Per
 ### Evidencia1
 
 ![Resultado de la consulta](evidencia/paso1_tablasDisponibles.png)
+
+
+## Query 2
+
+Después de ver las tablas me fui directo a `crime_scene_report`.
+
+El caso dice que el asesinato pasó el **15 de enero de 2018 en SQL City**, así que filtré justo ese día para ver qué encontraba.
+
+SELECT *
+FROM crime_scene_report
+WHERE date = 20180115
+AND city = 'SQL City';
+
+AAparecen varios reportes de ese día, pero uno es el del asesinato. En la descripción dicen que hay dos testigos: uno vive en la última casa de **Northwestern Dr** y el otro es **Annabel**, que vive en **Franklin Ave**.
+
+Con eso ya hay por dónde empezar a buscar.
+
+### Evidencia
+
+![Reporte del crimen](evidencia/paso2_reporteCrimen.png)
