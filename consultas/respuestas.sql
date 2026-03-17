@@ -42,3 +42,25 @@ WHERE plate_number LIKE '%H42W%';
 SELECT *
 FROM person
 WHERE license_id IN (183779, 423327, 664760);
+
+-- Query 7: entrevista del asesino
+
+SELECT *
+FROM interview
+WHERE person_id = 67318;
+
+-- Query final: encontrar al autor intelectual
+
+SELECT p.name, COUNT(*) as veces
+FROM person p
+JOIN drivers_license d ON p.license_id = d.id
+JOIN facebook_event_checkin f ON p.id = f.person_id
+WHERE d.gender = 'female'
+AND d.hair_color = 'red'
+AND d.height BETWEEN 65 AND 67
+AND d.car_make = 'Tesla'
+AND d.car_model = 'Model S'
+AND f.event_name = 'SQL Symphony Concert'
+AND f.date LIKE '201712%'
+GROUP BY p.name
+HAVING COUNT(*) = 3;
