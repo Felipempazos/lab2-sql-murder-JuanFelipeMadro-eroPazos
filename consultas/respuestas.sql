@@ -32,3 +32,13 @@ SELECT *
 FROM get_fit_now_member
 WHERE membership_status = 'gold'
 AND id LIKE '48%';
+
+-- Query 6: buscar por placa y conectar con personas
+
+SELECT *
+FROM drivers_license
+WHERE plate_number LIKE '%H42W%';
+
+SELECT *
+FROM person
+WHERE license_id IN (183779, 423327, 664760);

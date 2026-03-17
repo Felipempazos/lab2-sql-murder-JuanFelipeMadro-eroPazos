@@ -66,6 +66,10 @@ El tipo dice que escuchó el disparo y vio a alguien salir corriendo. Lo interes
 
 Con eso ya hay varias pistas para seguir buscando.
 
+### Evidencia
+
+![Entrevista Morty](evidencia/paso4_entrevista_morty.png)
+
 ## Query 5
 
 Con lo que dijo el testigo, probé buscar en los miembros del gimnasio.
@@ -82,3 +86,33 @@ Ahí aparecieron dos personas: Joe Germuska y Jeremy Bowers. Entonces uno de ell
 ### Evidencia
 
 ![Miembros gym](evidencia/paso5_gymSospechosos.png)
+
+## Query 6
+
+Con la pista de la placa que tenía "H42W", busqué en las licencias a ver qué carros coincidían.
+
+SELECT *
+FROM drivers_license
+WHERE plate_number LIKE '%H42W%';
+
+Aparecieron tres opciones, así que tocó cruzar eso con la tabla `person` usando los license_id para ver quiénes eran.
+
+SELECT *
+FROM person
+WHERE license_id IN (183779, 423327, 664760);
+
+Con eso ya salen las personas reales, y ahí se puede ver cuál coincide con lo del gimnasio y las otras pistas.
+
+### Evidencia
+
+![Busqueda y Cruce con personas](evidencia/paso6_personasPlaca.png)
+
+## Resultado final
+
+Al cruzar la información del carro con los datos del gimnasio, solo una persona coincide con todas las pistas.
+
+Esa persona es Jeremy Bowers, así que él es el asesino.
+
+### Evidencia
+
+![Asesino](evidencia/jeremy.png)
