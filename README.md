@@ -33,3 +33,52 @@ Con eso ya hay por dónde empezar a buscar.
 ### Evidencia
 
 ![Reporte del crimen](evidencia/paso2_reporteCrimen.png)
+
+## Query 3
+
+La pista decía “última casa de Northwestern Dr”, pero pues no decía el número, así que tocó buscar quién vive en esa calle.
+
+SELECT *
+FROM person
+WHERE address_street_name = 'Northwestern Dr'
+ORDER BY address_number DESC;
+
+Ordené de mayor a menor para no ponerme a revisar todo uno por uno. El primero que sale es Morty Schapiro, así que ese debe ser el testigo.
+
+### Evidencia
+
+![Testigo Northwestern](evidencia/paso3_testigo.png)
+
+## Query 4
+
+Ya con el testigo, tocaba ver qué había visto.
+
+SELECT *
+FROM interview
+WHERE person_id = 14887;
+
+El tipo dice que escuchó el disparo y vio a alguien salir corriendo. Lo interesante es que menciona varias cosas:
+
+- llevaba una bolsa de gimnasio “Get Fit Now”
+- el número de socio empezaba por 482
+- era miembro gold
+- y se fue en un carro con una placa que tenía "H42W"
+
+Con eso ya hay varias pistas para seguir buscando.
+
+## Query 5
+
+Con lo que dijo el testigo, probé buscar en los miembros del gimnasio.
+
+Primero intenté con los que empezaran por 48 y fueran gold.
+
+SELECT *
+FROM get_fit_now_member
+WHERE membership_status = 'gold'
+AND id LIKE '48%';
+
+Ahí aparecieron dos personas: Joe Germuska y Jeremy Bowers. Entonces uno de ellos debería ser el sospechoso.
+
+### Evidencia
+
+![Miembros gym](evidencia/paso5_gymSospechosos.png)
